@@ -1,0 +1,40 @@
+*{
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+}
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.container{
+    flex: 1;
+    background-color: brown;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.board-grid{
+    max-height: 40rem;
+    max-width: 40rem;
+    display: grid;
+    grid-template-columns: repeat(3, 10rem);
+    grid-template-rows: repeat(3, 10rem);
+}
+
+.cell{
+    background-color: blue;
+    border: black solid 1px;
+
+    
+}
+
+.x{
+    background-color: green;
+}
+
+.circle{
+    background-color: yellow;
+}
