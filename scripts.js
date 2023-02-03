@@ -1,7 +1,6 @@
 //module for the gameboard
 
 const gameBoard = (() => {
-    let container = document.querySelector('.container');
     let boardGrid = document.querySelector('.board-grid');
     const boardArray = [];
     let i = 0;
@@ -39,10 +38,67 @@ const gameBoard = (() => {
         
     };
 })();
-//fill the cells
 
 //create players
 
+const gamePlayer = (name, mark, score) => {
+   let playerScore = 0;
+   let playerName = '';
+   let playerMark = '';
+   playerScore = playerScore + mark;
+   playerName = name;
+   playerMark = mark
+   return { playerName, playerScore, playerMark};
+};
+
+const player1 = gamePlayer('Player-1', 'x', '0');
+const player2 = gamePlayer('Player-2', 'circle', '0');
+
 //check winner
 
+function winCheck() {
+
+    //Groups Player1's and player2's moves in two different arrays and remove marked
+    //to facilitate comparations with conditions
+    player1Moves = gameBoard.boardArray.filter(item => item.includes('x'));
+    player1Moves = player1Moves.map(j => j.slice(-1, j.lenght));
+    player2Moves = gameBoard.boardArray.filter(item => item.includes('circle'));
+    player2Moves = player2Moves.map(j => j.slice(-1, j.lenght));
+
+   const winCondition = [
+        ['0', '1', '2'],
+        ['3', '4', '5'],
+        ['6', '7', '8'],
+        ['0', '3', '6'],
+        ['1', '4', '7'],
+        ['2', '5', '8'],
+        ['0', '4', '8'],
+        ['2', '4', '6']
+   
+    ]
+    
+    let checker = (arr, target) => target.every(v => arr.includes(v));
+
+
+
+    winCondition.forEach(element => {
+        
+        if (checker(player1Moves, element)){
+            console.log('Player one Won');
+        }
+        else if(checker(player2Moves, element)){
+            console.log('Player Two Won');
+        }
+        
+
+
+
+    });
+
+   return {
+        player1Moves,
+        player2Moves,
+    }; 
+
+}
 //keep score
