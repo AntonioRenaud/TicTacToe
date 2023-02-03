@@ -13,25 +13,15 @@ const gameBoard = (() => {
             if (i % 2 === 0 ) {
                 targetCell.classList.add('circle');
                 targetCell.classList.add('marked');
-                boardArray.push('circle');
-            }
-            else {
+                boardArray.push(`circle-${targetCell.dataset.cell}`);
+            } else {
                 targetCell.classList.add('x');
                 targetCell.classList.add('marked');
-                boardArray.push('x');
-            }
-        }
-        
-    
-            
+                boardArray.push(`x-${targetCell.dataset.cell}`);
+                }
+          }
+             
         });
-   
-   
-
-    
-  
-   
-
     return {
         boardArray,
     };
