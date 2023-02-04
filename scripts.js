@@ -39,7 +39,7 @@ const gameBoard = (() => {
           
              
         });
-
+        // Greys out remaining cells after a winner is found
         function blockCells () {
             let cell = document.querySelectorAll('.cell')
             cell.forEach(i =>
@@ -49,10 +49,31 @@ const gameBoard = (() => {
                     }
                 })
         } 
+        //Changes the backgound color of the cells the looser choose to red
+        function paintLoserRed(winner){
+            let cell = document.querySelectorAll('.cell')
+            if (winner === 'player-1') {
+                cell.forEach(i => {
+                        if (i.classList.contains('circle')){
+                            i.classList.add('loser');
+                        }
+                })
+            
+            }
+            
+            else if(winner === 'player-2') {
+                cell.forEach(i => {
+                        if (i.classList.contains('x')){
+                            i.classList.add('loser');
+                        }
+                })
+            }    
+        }  
 
     return {
         boardArray,
-        blockCells
+        blockCells,
+        paintLoserRed
         
     };
 })();
@@ -105,12 +126,14 @@ const gameRound = (() => {
             if (checkIfIncludes(player1Moves, element)){
                 console.log('Player one Won');
                 gameBoard.blockCells();
+                gameBoard.paintLoserRed('player-1');
                
                 
             }
             else if(checkIfIncludes(player2Moves, element)){
                 console.log('Player Two Won');
                 gameBoard.blockCells();
+                gameBoard.paintLoserRed('player-2');
             }
 
             else if( gameBoard.boardArray.length === 9 ) {

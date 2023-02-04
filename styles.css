@@ -42,6 +42,10 @@ body {
 }
 
 .blocked {
-    background-color: grey;
+    background-color: lightgrey;
     pointer-events: none;
+}
+
+.loser{
+    background-color: red;
 }
