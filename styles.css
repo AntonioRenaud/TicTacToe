@@ -10,7 +10,7 @@ body {
 }
 .container{
     flex: 1;
-    background-color: brown;
+    background-color: wheat;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -25,16 +25,18 @@ body {
 }
 
 .cell{
-    background-color: blue;
+    background-color: white;
     border: black solid 1px;
 
     
 }
 
 .x{
-    background-color: green;
+    background-image: url(/images/x.png);
+    background-size: 10rem;
 }
 
 .circle{
-    background-color: yellow;
+    background-image: url(/images/o-removebg-preview.png);
+    background-size: 10rem;
 }

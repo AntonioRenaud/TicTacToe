@@ -41,24 +41,22 @@ const gameBoard = (() => {
 
 //create players
 
-const gamePlayer = (name, mark, score) => {
+const gamePlayer = (name, score) => {
    let playerScore = 0;
    let playerName = '';
-   let playerMark = '';
-   playerScore = playerScore + mark;
+   playerScore = playerScore + score;
    playerName = name;
-   playerMark = mark
-   return { playerName, playerScore, playerMark};
+   return { playerName, playerScore};
 };
 
-const player1 = gamePlayer('Player-1', 'x', '0');
-const player2 = gamePlayer('Player-2', 'circle', '0');
+const player1 = gamePlayer('Player-1', '0');
+const player2 = gamePlayer('Player-2', '0');
 
 //check winner
 
 function winCheck() {
 
-    //Groups Player1's and player2's moves in two different arrays and remove marked
+    //Groups Player1's and player2's moves in two different arrays and remove mark
     //to facilitate comparations with conditions
     player1Moves = gameBoard.boardArray.filter(item => item.includes('x'));
     player1Moves = player1Moves.map(j => j.slice(-1, j.lenght));
@@ -77,16 +75,17 @@ function winCheck() {
    
     ]
     
-    let checker = (arr, target) => target.every(v => arr.includes(v));
+    let checkIfIncludes = (array, array2) => array2.every(i => array.includes(i));
 
 
 
     winCondition.forEach(element => {
         
-        if (checker(player1Moves, element)){
+        if (checkIfIncludes(player1Moves, element)){
             console.log('Player one Won');
+            
         }
-        else if(checker(player2Moves, element)){
+        else if(checkIfIncludes(player2Moves, element)){
             console.log('Player Two Won');
         }
         
@@ -101,4 +100,4 @@ function winCheck() {
     }; 
 
 }
-//keep score
+
