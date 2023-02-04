@@ -39,8 +39,20 @@ const gameBoard = (() => {
           
              
         });
+
+        function blockCells () {
+            let cell = document.querySelectorAll('.cell')
+            cell.forEach(i =>
+                {
+                    if (!i.classList.contains('marked')){
+                        i.classList.add('blocked');
+                    }
+                })
+        } 
+
     return {
         boardArray,
+        blockCells
         
     };
 })();
@@ -92,11 +104,13 @@ const gameRound = (() => {
             
             if (checkIfIncludes(player1Moves, element)){
                 console.log('Player one Won');
+                gameBoard.blockCells();
                
                 
             }
             else if(checkIfIncludes(player2Moves, element)){
                 console.log('Player Two Won');
+                gameBoard.blockCells();
             }
 
             else if( gameBoard.boardArray.length === 9 ) {

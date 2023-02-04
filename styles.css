@@ -40,3 +40,8 @@ body {
     background-image: url(/images/o-removebg-preview.png);
     background-size: 10rem;
 }
+
+.blocked {
+    background-color: grey;
+    pointer-events: none;
+}
