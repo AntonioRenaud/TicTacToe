@@ -4,6 +4,8 @@ const gameBoard = (() => {
     let boardGrid = document.querySelector('.board-grid');
     const boardArray = [];
     let i = 0;
+
+
     
     //Event listener to mark the cells, by adding the X or Circle class
     boardGrid.addEventListener('click', function(e){
@@ -29,6 +31,10 @@ const gameBoard = (() => {
             //counter to help keep track of the turns, if i is a even number, it is X's turn
             //if i is odd, it is circle's turn
             i++;
+            if ( i > 4 ){
+                gameRound.winCheck();
+                
+            }
           }
           
              
@@ -54,50 +60,61 @@ const player2 = gamePlayer('Player-2', '0');
 
 //check winner
 
-function winCheck() {
 
-    //Groups Player1's and player2's moves in two different arrays and remove mark
-    //to facilitate comparations with conditions
-    player1Moves = gameBoard.boardArray.filter(item => item.includes('x'));
-    player1Moves = player1Moves.map(j => j.slice(-1, j.lenght));
-    player2Moves = gameBoard.boardArray.filter(item => item.includes('circle'));
-    player2Moves = player2Moves.map(j => j.slice(-1, j.lenght));
 
-   const winCondition = [
-        ['0', '1', '2'],
-        ['3', '4', '5'],
-        ['6', '7', '8'],
-        ['0', '3', '6'],
-        ['1', '4', '7'],
-        ['2', '5', '8'],
-        ['0', '4', '8'],
-        ['2', '4', '6']
-   
-    ]
+
+const gameRound = (() => {
+
+    function winCheck() {
+
+        //Groups Player1's and player2's moves in two different arrays and remove mark
+        //to facilitate comparations with conditions
+        let player1Moves = gameBoard.boardArray.filter(item => item.includes('x')).map(j => j.slice(-1, j.lenght));
+        let player2Moves = gameBoard.boardArray.filter(item => item.includes('circle')).map(j => j.slice(-1, j.lenght));
     
-    let checkIfIncludes = (array, array2) => array2.every(i => array.includes(i));
-
-
-
-    winCondition.forEach(element => {
+       const winCondition = [
+            ['0', '1', '2'],
+            ['3', '4', '5'],
+            ['6', '7', '8'],
+            ['0', '3', '6'],
+            ['1', '4', '7'],
+            ['2', '5', '8'],
+            ['0', '4', '8'],
+            ['2', '4', '6']
+       
+        ]
         
-        if (checkIfIncludes(player1Moves, element)){
-            console.log('Player one Won');
+        let checkIfIncludes = (array, array2) => array2.every(i => array.includes(i));
+    
+    
+    
+        winCondition.forEach(element => {
             
-        }
-        else if(checkIfIncludes(player2Moves, element)){
-            console.log('Player Two Won');
-        }
-        
+            if (checkIfIncludes(player1Moves, element)){
+                console.log('Player one Won');
+               
+                
+            }
+            else if(checkIfIncludes(player2Moves, element)){
+                console.log('Player Two Won');
+            }
 
+            else if( gameBoard.boardArray.length === 9 ) {
+                console.log ('Is a Draw!');
+            }
+            
+    
+    
+    
+        });
+    
+       
+    
+    }
 
+    
 
-    });
-
-   return {
-        player1Moves,
-        player2Moves,
+    return {
+        winCheck
     }; 
-
-}
-
+})();
