@@ -88,8 +88,8 @@ const gamePlayer = (name, score) => {
    return { playerName, playerScore};
 };
 
-const player1 = gamePlayer('Player-1', '0');
-const player2 = gamePlayer('Player-2', '0');
+const player1 = gamePlayer('Player-l', 0);
+const player2 = gamePlayer('Player-2', 0);
 
 //check winner
 
@@ -99,6 +99,7 @@ const player2 = gamePlayer('Player-2', '0');
 const gameRound = (() => {
 
     function winCheck() {
+
 
         //Groups Player1's and player2's moves in two different arrays and remove mark
         //to facilitate comparations with conditions
@@ -127,6 +128,8 @@ const gameRound = (() => {
                 console.log('Player one Won');
                 gameBoard.blockCells();
                 gameBoard.paintLoserRed('player-1');
+                player1.playerScore++;
+                updateScore();
                
                 
             }
@@ -134,6 +137,8 @@ const gameRound = (() => {
                 console.log('Player Two Won');
                 gameBoard.blockCells();
                 gameBoard.paintLoserRed('player-2');
+                player2.playerScore++;
+                updateScore();
             }
 
             else if( gameBoard.boardArray.length === 9 ) {
@@ -149,7 +154,17 @@ const gameRound = (() => {
     
     }
 
-    
+    function restartGame(){
+
+    }
+
+    function updateScore(){
+        const player1Score = document.getElementById('score-1');
+        const player2Score = document.getElementById('score-2');
+        player1Score.textContent = player1.playerScore;
+        player2Score.textContent = player2.playerScore;
+
+    }
 
     return {
         winCheck

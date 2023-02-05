@@ -20,7 +20,15 @@
     width: 100vw;
     background-color: #342E37;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    align-items: center;
+    gap: 5vw;
+}
+
+.header > div {
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-end;
     align-items: center;
 }
 
