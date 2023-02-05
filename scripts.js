@@ -70,10 +70,26 @@ const gameBoard = (() => {
             }    
         }  
 
+    function cleanBoard(){
+        let cell = document.querySelectorAll('.cell')
+            cell.forEach(i => {
+                i.classList.remove('circle');
+                i.classList.remove('x');
+                i.classList.remove('marked');
+                i.classList.remove('loser');
+                i.classList.remove('blocked');
+                })
+            
+        
+
+    }
+
     return {
         boardArray,
         blockCells,
-        paintLoserRed
+        paintLoserRed,
+        cleanBoard,
+        i
         
     };
 })();
@@ -105,7 +121,8 @@ const gameRound = (() => {
         //to facilitate comparations with conditions
         let player1Moves = gameBoard.boardArray.filter(item => item.includes('x')).map(j => j.slice(-1, j.lenght));
         let player2Moves = gameBoard.boardArray.filter(item => item.includes('circle')).map(j => j.slice(-1, j.lenght));
-    
+        
+        // Object containing arrays with all the posible winning moves in the game
        const winCondition = [
             ['0', '1', '2'],
             ['3', '4', '5'],
@@ -118,10 +135,8 @@ const gameRound = (() => {
        
         ]
         
+        // Checks if the players moves are one of the winning combinations
         let checkIfIncludes = (array, array2) => array2.every(i => array.includes(i));
-    
-    
-    
         winCondition.forEach(element => {
             
             if (checkIfIncludes(player1Moves, element)){
@@ -155,6 +170,9 @@ const gameRound = (() => {
     }
 
     function restartGame(){
+        gameBoard.cleanBoard();
+        gameBoard.boardArray.length = 0;
+        gameBoard.i = 0;
 
     }
 
@@ -167,6 +185,7 @@ const gameRound = (() => {
     }
 
     return {
-        winCheck
+        winCheck,
+        restartGame
     }; 
 })();
