@@ -73,12 +73,12 @@
 }
 
 .x{
-    background-image: url(/Images/x.png);
+    background-image: url('/images/x.png');
     background-size: 10rem;
 }
 
 .circle{
-    background-image: url(/Images/o-removebg-preview.png);
+    background-image: url('/images/o-removebg-preview.png');
     background-size: 10rem;
 }
 
