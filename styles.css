@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'tecno';
-    src: url('/font/TechnoRaceItalic-eZRWe.otf');
+    src: url('font/TechnoRaceItalic-eZRWe.otf');
 }
 
 *{
@@ -109,7 +109,7 @@
 }
 
 .circle{
-    background-image: url("/images/o-removebg-preview.png");
+    background-image: url("images/o-removebg-preview.png");
     background-size: 10rem;
 }
 
