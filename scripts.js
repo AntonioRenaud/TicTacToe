@@ -1,12 +1,10 @@
 //module for the gameboard
-
 const gameBoard = (() => {
     let boardGrid = document.querySelector('.board-grid');
     const boardArray = [];
     let i = 0;
+    let status = document.querySelector('.footer');
 
-
-    
     //Event listener to mark the cells, by adding the X or Circle class
     boardGrid.addEventListener('click', function(e){
         // variable to capture the specific cell that was clicked upon
@@ -21,11 +19,12 @@ const gameBoard = (() => {
                 // with every index of the array being the turn and the position
                 // taken from data-cell parameter of the cell
                 boardArray.push(`x-${targetCell.dataset.cell}`);
+                status.textContent = "Player-2 's turn";
                 
             } else {
                 targetCell.classList.add('circle');
                 targetCell.classList.add('marked');
-                
+                status.textContent = "Player-1 's turn";
                 boardArray.push(`circle-${targetCell.dataset.cell}`);
                 }
             //counter to help keep track of the turns, if i is a even number, it is X's turn
@@ -35,8 +34,7 @@ const gameBoard = (() => {
                 gameRound.winCheck();
                 
             }
-          }
-          
+          }       
              
         });
         // Greys out remaining cells after a winner is found
@@ -68,20 +66,19 @@ const gameBoard = (() => {
                         }
                 })
             }    
-        }  
+        }
 
     function cleanBoard(){
         let cell = document.querySelectorAll('.cell')
-            cell.forEach(i => {
+            cell.forEach( i => {
                 i.classList.remove('circle');
                 i.classList.remove('x');
                 i.classList.remove('marked');
                 i.classList.remove('loser');
                 i.classList.remove('blocked');
                 })
-            
-        
-
+            i = 0;
+                   
     }
 
     return {
@@ -89,30 +86,18 @@ const gameBoard = (() => {
         blockCells,
         paintLoserRed,
         cleanBoard,
-        i
+        status
         
     };
 })();
 
-//create players
-
-const gamePlayer = (name, score) => {
-   let playerScore = 0;
-   let playerName = '';
-   playerScore = playerScore + score;
-   playerName = name;
-   return { playerName, playerScore};
-};
-
-const player1 = gamePlayer('Player-l', 0);
-const player2 = gamePlayer('Player-2', 0);
-
-//check winner
-
-
-
-
 const gameRound = (() => {
+
+    button = document.querySelector('.restart');
+    button.addEventListener('click', () => {
+        restartGame();
+    })
+    let gameEnded = false;
 
     function winCheck() {
 
@@ -143,8 +128,10 @@ const gameRound = (() => {
                 console.log('Player one Won');
                 gameBoard.blockCells();
                 gameBoard.paintLoserRed('player-1');
+                gameEnded = true;
                 player1.playerScore++;
                 updateScore();
+                gameBoard.status.textContent = 'Player-1 Won!'
                
                 
             }
@@ -152,28 +139,24 @@ const gameRound = (() => {
                 console.log('Player Two Won');
                 gameBoard.blockCells();
                 gameBoard.paintLoserRed('player-2');
+                gameEnded = true;
                 player2.playerScore++;
                 updateScore();
+                gameBoard.status.textContent = 'Player-2 Won!'
             }
 
-            else if( gameBoard.boardArray.length === 9 ) {
+            else if(gameBoard.boardArray.length === 9 && !gameEnded) {
                 console.log ('Is a Draw!');
-            }
-            
-    
-    
-    
-        });
-    
-       
-    
+                gameBoard.status.textContent = "It's a Draw";
+                gameEnded = true;
+            }  
+        });     
     }
 
     function restartGame(){
         gameBoard.cleanBoard();
         gameBoard.boardArray.length = 0;
-        gameBoard.i = 0;
-
+        gameEnded = false;
     }
 
     function updateScore(){
@@ -181,7 +164,6 @@ const gameRound = (() => {
         const player2Score = document.getElementById('score-2');
         player1Score.textContent = player1.playerScore;
         player2Score.textContent = player2.playerScore;
-
     }
 
     return {
@@ -189,3 +171,16 @@ const gameRound = (() => {
         restartGame
     }; 
 })();
+
+//create players
+
+const gamePlayer = (name, score) => {
+    let playerScore = 0;
+    let playerName = '';
+    playerScore = playerScore + score;
+    playerName = name;
+    return { playerName, playerScore};
+ };
+ 
+ const player1 = gamePlayer('Player-l', 0);
+ const player2 = gamePlayer('Player-2', 0);

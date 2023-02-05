@@ -1,18 +1,31 @@
+@font-face {
+    font-family: 'tecno';
+    src: url('/font/TechnoRaceItalic-eZRWe.otf');
+}
+
 *{
     box-sizing: border-box;
     padding: 0px;
     margin: 0px;
 }
 
+
 .container{
     height: 100vh;
     width: 100vw;
     background-color: #FA824C;
-    display: grid;
-    grid-template-rows: 2fr 8fr;
-    justify-content: center;
-    align-items: center;
-    gap: 10vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;;
+    
+}
+
+.container > h2{
+    font-size: 4rem;
+    text-align: center;
+    color: #FAFFFD;
+    background-color: #3C91E6;
+    font-family: 'tecno';
 }
 
 .header{
@@ -22,17 +35,36 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 5vw;
 }
 
-.header > div {
-    display: flex;
-    flex-flow: column;
-    justify-content: flex-end;
+.header > .points { 
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
     align-items: center;
+    gap: 10vw;
+
+    
 }
 
-.header > button {
+.header .points .button{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3vh;
+    
+
+}
+
+.header .points .button h2{
+    font-size: 4em;
+    
+
+}
+
+
+.header > .points > .button > button {
     background-color: #3C91E6;
     height: 5vh;
     width: 20vw;
@@ -41,21 +73,20 @@
     border: 2px solid #FA824C;
 }
 
-.header > div > h1{
+.header > div > div > h2{
     font-size: 2em ;
     color: #FAFFFD;
+    font-family: 'tecno';
 }
 
 .score{
-    
+    font-family: 'tecno';
     font-size: 5em;
     color: #FAFFFD;
 }
 
 .board-grid{
-    align-self: flex-start;
-    max-height: 80vh;
-    max-width: 100vw;
+    margin: 5vh;
     display: grid;
     grid-template-columns: repeat(3, 10rem);
     grid-template-rows: repeat(3, 10rem);
@@ -73,12 +104,12 @@
 }
 
 .x{
-    background-image: url("./images/x.png");
+    background-image: url("images/x.png");
     background-size: 10rem;
 }
 
 .circle{
-    background-image: url("./images/o-removebg-preview.png");
+    background-image: url("/images/o-removebg-preview.png");
     background-size: 10rem;
 }
 
@@ -89,4 +120,7 @@
 
 .loser{
     background-color: red;
+}
+.winner{
+    background-color: green;
 }

@@ -11,19 +11,26 @@
 </head>
 <body>
     <div class="container">
+        <h2>TIC-TAC-TOE</h2>
         <div class="header">
-            <div>
-                <h1 class="player-1">Player-1: </h1>
-                <p class="score" id="score-1"> 0 </p>
-            </div>
-            <button class="restart">
-                Restart game
-            </button>
-            <div>
-                <h1 class="player-2">Player-2:</h1>
-                <p class="score" id="score-2"> 0 </p>
+            <div class="points">
+                <div>
+                    <h2 class="player-1">Player-1: </h2>
+                    <p class="score" id="score-1"> 0 </p>
+                </div>
+                <div class="button">
+                    <h2>Scores</h2>
+                    <button class="restart">Restart game</button>
+                </div>
+                <div>
+                    <h2 class="player-2">Player-2:</h2>
+                    <p class="score" id="score-2"> 0 </p>
+                </div>
             </div>
         </div>
+        
+        
+
         <div class="board-grid">
             <div class="cell" data-cell="0"></div>
             <div class="cell" data-cell="1"></div>
@@ -35,6 +42,7 @@
             <div class="cell" data-cell="7"></div>
             <div class="cell" data-cell="8"></div>
         </div>
+        <h2 class="footer">Player-1 's Turn</h2>
     </div>
 </body>
 </html>
