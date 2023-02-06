@@ -90,6 +90,7 @@ const gameRound = (() => {
     restartGame();
   });
   let gameEnded = false;
+  let line = 0;
 
   function winCheck() {
     //Groups Player1's and player2's moves in two different arrays and remove mark
@@ -117,27 +118,24 @@ const gameRound = (() => {
     let checkIfIncludes = (array, array2) =>
       array2.every((i) => array.includes(i));
     winCondition.forEach((element) => {
-      if (checkIfIncludes(player1Moves, element) && !gameEnded) {
+      if (checkIfIncludes(player1Moves, element)) {
         gameEnded = true;
+        line++;
         gameBoard.blockCells();
         gameBoard.paintLoserRed("player-1");
         player1.playerScore++;
+        if (line === 2) {
+          player1.playerScore--;
+        }
         updateScore();
         gameBoard.status.textContent = "Player-1 Won!";
-      } else if (checkIfIncludes(player2Moves, element) && !gameEnded) {
+      } else if (checkIfIncludes(player2Moves, element)) {
         gameBoard.blockCells();
         gameBoard.paintLoserRed("player-2");
         gameEnded = true;
         player2.playerScore++;
         updateScore();
         gameBoard.status.textContent = "Player-2 Won!";
-      } else if (checkIfIncludes(player1Moves, element) && gameEnded) {
-        gameEnded = true;
-        gameBoard.blockCells();
-        gameBoard.paintLoserRed("player-1");
-        player1.playerScore++;
-        updateScore();
-        gameBoard.status.textContent = "Player-1 Won!";
       } else if (gameBoard.boardArray.length === 9 && !gameEnded) {
         gameBoard.status.textContent = "It's a Draw";
         gameEnded = true;
@@ -149,6 +147,7 @@ const gameRound = (() => {
     gameBoard.cleanBoard();
     gameBoard.boardArray.length = 0;
     gameEnded = false;
+    line = 0;
   }
 
   function updateScore() {
