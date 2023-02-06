@@ -146,6 +146,7 @@ const gameRound = (() => {
   function restartGame() {
     gameBoard.cleanBoard();
     gameBoard.boardArray.length = 0;
+    gameBoard.status.textContent = "Player-1 's turn";
     gameEnded = false;
     line = 0;
   }
