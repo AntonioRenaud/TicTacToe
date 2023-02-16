@@ -1,6 +1,6 @@
 @font-face {
-  font-family: "tecno";
-  src: url("font/TechnoRaceItalic-eZRWe.otf");
+  font-family: 'tecno';
+  src: url('font/TechnoRaceItalic-eZRWe.otf');
 }
 
 * {
@@ -19,11 +19,11 @@
 }
 
 .container > h2 {
-  font-size: 4rem;
+  font-size: clamp(1em, 3em, 5em);
   text-align: center;
   color: #fafffd;
   background-color: #3c91e6;
-  font-family: "tecno";
+  font-family: 'tecno';
 }
 
 .header {
@@ -48,39 +48,38 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 3vh;
 }
 
 .header .points .button h2 {
-  font-size: 4em;
+  font-size: clamp(1em, 3em, 4em);
 }
 
 .header > .points > .button > button {
   background-color: #3c91e6;
   height: 5vh;
   width: 20vw;
-  font-size: 1em;
+  font-size: clamp(0.5em, 1em, 2em);
   border-radius: 20px;
   border: 2px solid #fa824c;
 }
 
 .header > div > div > h2 {
-  font-size: 2em;
+  font-size: clamp(1em, 2em, 4em);
   color: #fafffd;
-  font-family: "tecno";
+  font-family: 'tecno';
 }
 
 .score {
-  font-family: "tecno";
-  font-size: 5em;
+  font-family: 'tecno';
+  font-size: clamp(2em, 4em, 6em);
   color: #fafffd;
 }
 
 .board-grid {
-  margin: 5vh;
+  margin: 0.5em;
   display: grid;
-  grid-template-columns: repeat(3, 10rem);
-  grid-template-rows: repeat(3, 10rem);
+  grid-template-columns: repeat(3, minmax(4em, 8em));
+  grid-template-rows: repeat(3, minmax(4em, 8em));
   justify-content: center;
   gap: 1em;
 }
@@ -92,13 +91,13 @@
 }
 
 .x {
-  background-image: url("images/x.png");
-  background-size: 10rem;
+  background-image: url('images/x.png');
+  background-size: contain;
 }
 
 .circle {
-  background-image: url("images/o-removebg-preview.png");
-  background-size: 10rem;
+  background-image: url('images/o-removebg-preview.png');
+  background-size: contain;
 }
 
 .blocked {
